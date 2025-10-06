@@ -1,5 +1,6 @@
 from datetime import datetime
-from database import db
+from backend.database import db
+
 
 class Product(db.Model):
     """Modelo para produtos da geladeira inteligente."""
