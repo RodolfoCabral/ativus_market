@@ -1,5 +1,11 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+import os
+
+uri = os.getenv("DATABASE_URL")
+if uri and uri.startswith("postgres://"):
+    os.environ["DATABASE_URL"] = uri.replace("postgres://", "postgresql://", 1)
+
 
 # Instância global do SQLAlchemy
 db = SQLAlchemy()
