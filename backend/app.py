@@ -27,8 +27,8 @@ def create_app(config_name=None):
     # Registrar blueprints
     from backend.routes.product import product_bp
     from backend.routes.order import order_bp
-    from routes.mercadopago import mercadopago_bp
-    from routes.admin import admin_bp
+    from backend.routes.mercadopago import mercadopago_bp
+    from backend.routes.admin import admin_bp
     
     app.register_blueprint(product_bp, url_prefix='/api')
     app.register_blueprint(order_bp, url_prefix='/api')
