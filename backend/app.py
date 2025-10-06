@@ -15,7 +15,14 @@ def create_app(config_name=None):
     if config_name is None:
         config_name = os.environ.get('FLASK_ENV', 'default')
     
-    app = Flask(__name__, static_folder='../frontend/dist', static_url_path='/')
+    import os
+
+    app = Flask(
+        __name__,
+        static_folder=os.path.join(os.path.dirname(__file__), '../frontend/dist'),
+        static_url_path=''
+    )
+
 
     #app = Flask(__name__, static_folder='static')
     app.config.from_object(config[config_name])
@@ -44,11 +51,14 @@ def create_app(config_name=None):
         """Serve os arquivos compilados do frontend (Vite build)."""
         static_folder = app.static_folder
         file_path = os.path.join(static_folder, path)
-        
-        if path != "" and os.path.exists(file_path):
+
+        # Se o arquivo existir (como /assets/index-xxx.css ou /assets/index-xxx.js), sirva diretamente
+        if path and os.path.exists(file_path):
             return send_from_directory(static_folder, path)
-        else:
-            return send_from_directory(static_folder, 'index.html')
+
+        # Caso contrário, devolve o index.html
+        return send_from_directory(static_folder, 'index.html')
+
 
 
     
