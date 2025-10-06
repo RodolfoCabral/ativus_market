@@ -41,14 +41,15 @@ def create_app(config_name=None):
     @app.route('/', defaults={'path': ''})
     @app.route('/<path:path>')
     def serve_frontend(path):
-        """Serve arquivos estáticos do frontend ou index.html para SPA."""
+        """Serve os arquivos compilados do frontend (Vite build)."""
         static_folder = app.static_folder
+        file_path = os.path.join(static_folder, path)
         
-        file_path = os.path.join(app.static_folder, path)
-        if os.path.isfile(file_path):
-            return send_from_directory(app.static_folder, path)
+        if path != "" and os.path.exists(file_path):
+            return send_from_directory(static_folder, path)
         else:
-            return send_from_directory(app.static_folder, 'index.html')
+            return send_from_directory(static_folder, 'index.html')
+
 
     
     # Handler de erro global
