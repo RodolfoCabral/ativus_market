@@ -3,6 +3,9 @@ from flask import Flask, send_from_directory, jsonify
 from flask_cors import CORS
 from backend.config import config
 from backend.database import init_db
+from backend.models.product import Product
+from backend.database import db
+
 
 
 
@@ -23,7 +26,7 @@ def create_app(config_name=None):
     
     # Registrar blueprints
     from backend.routes.product import product_bp
-    from routes.order import order_bp
+    from backend.routes.order import order_bp
     from routes.mercadopago import mercadopago_bp
     from routes.admin import admin_bp
     
