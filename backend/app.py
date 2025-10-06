@@ -1,7 +1,7 @@
 import os
 from flask import Flask, send_from_directory, jsonify
 from flask_cors import CORS
-from config import config
+from backend.config import config
 from database import init_db
 
 def create_app(config_name=None):
