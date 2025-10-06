@@ -2,30 +2,24 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import os
 
-# Corrigir URI antiga do Heroku
-uri = os.getenv("DATABASE_URL")
-if uri and uri.startswith("postgres://"):
-    os.environ["DATABASE_URL"] = uri.replace("postgres://", "postgresql://", 1)
-
 db = SQLAlchemy()
 migrate = Migrate()
 
 def init_db(app):
-    """Inicializa o banco de dados com o aplicativo Flask."""
+    # Ler variável do ambiente
+    DATABASE_URL = os.environ.get('DATABASE_URL')
+    if not DATABASE_URL:
+        print("❌ Erro: DATABASE_URL não encontrada nas variáveis de ambiente")
+        sys.exit(1)
+
+    # Corrigir prefixo do PostgreSQL (Heroku usa formato antigo)
+    if DATABASE_URL.startswith('postgres://'):
+        DATABASE_URL = DATABASE_URL.replace('postgres://', 'postgresql://', 1)
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
     db.init_app(app)
-    migrate.init_app(app, db)
-    
-    with app.app_context():
-        # Importar todos os modelos para garantir que sejam criados
-        from models.product import Product
-        from models.order import Order
-        from models.transaction import Transaction
-        
-        # Criar todas as tabelas
-        db.create_all()
-        
-        # Inserir dados iniciais se necessário
-        _insert_initial_data()
 
 def _insert_initial_data():
     """Insere dados iniciais no banco de dados se não existirem."""
