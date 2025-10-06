@@ -3,11 +3,6 @@ from flask import Flask, send_from_directory, jsonify
 from flask_cors import CORS
 from backend.config import config
 from backend.database import init_db
-import os
-
-uri = os.getenv("DATABASE_URL")
-if uri and uri.startswith("postgres://"):
-    os.environ["DATABASE_URL"] = uri.replace("postgres://", "postgresql://", 1)
 
 
 def create_app(config_name=None):
