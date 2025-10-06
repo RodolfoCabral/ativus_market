@@ -1,5 +1,6 @@
 from datetime import datetime
-from database import db
+from backend.database import db
+
 
 class Order(db.Model):
     """Modelo para pedidos da geladeira inteligente."""

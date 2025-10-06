@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, current_app
 from functools import wraps
-from database import db
+from backend.database import db
 from models.product import Product
 from models.order import Order
 from models.transaction import Transaction
