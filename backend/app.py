@@ -15,7 +15,9 @@ def create_app(config_name=None):
     if config_name is None:
         config_name = os.environ.get('FLASK_ENV', 'default')
     
-    app = Flask(__name__, static_folder='static')
+    app = Flask(__name__, static_folder='../frontend/dist', static_url_path='/')
+
+    #app = Flask(__name__, static_folder='static')
     app.config.from_object(config[config_name])
     
     # Habilitar CORS
@@ -42,19 +44,12 @@ def create_app(config_name=None):
         """Serve arquivos estáticos do frontend ou index.html para SPA."""
         static_folder = app.static_folder
         
-        if path and os.path.exists(os.path.join(static_folder, path)):
-            return send_from_directory(static_folder, path)
+        file_path = os.path.join(app.static_folder, path)
+        if os.path.isfile(file_path):
+            return send_from_directory(app.static_folder, path)
         else:
-            # Para SPA, sempre retornar index.html
-            index_path = os.path.join(static_folder, 'index.html')
-            if os.path.exists(index_path):
-                return send_from_directory(static_folder, 'index.html')
-            else:
-                return jsonify({
-                    'message': 'Geladeira Inteligente API',
-                    'version': '1.0.0',
-                    'status': 'online'
-                })
+            return send_from_directory(app.static_folder, 'index.html')
+
     
     # Handler de erro global
     @app.errorhandler(404)
