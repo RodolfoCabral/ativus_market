@@ -1,13 +1,38 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Geladeira Inteligente - Vending Machine</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geladeira Inteligente | Ativus Market</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>🥶 Geladeira Inteligente</h1>
+    <nav>
+      <a href="/">Início</a>
+      <a href="/produtos.html">Produtos</a>
+      <a href="/carrinho.html">Carrinho</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Compre 24h por dia, 7 dias por semana</h2>
+      <p>Produtos frescos, pagamento digital e liberação automática.</p>
+      <button id="btnVerProdutos">Ver Produtos</button>
+    </section>
+
+    <section class="destaques">
+      <h3>Produtos em Destaque</h3>
+      <div id="produtos-container"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Ativus Market - Tecnologia e Conveniência</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
 </html>
