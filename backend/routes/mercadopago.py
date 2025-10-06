@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify, current_app
-from database import db
+from backend.database import db
 from models.order import Order
 from models.transaction import Transaction
 from utils.mercadopago_utils import MercadoPagoService

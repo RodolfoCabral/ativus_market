@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from database import db
+from backend.database import db
 from models.order import Order, OrderItem
 from models.product import Product
 
