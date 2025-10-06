@@ -14,8 +14,6 @@ def create_app(config_name=None):
     
     if config_name is None:
         config_name = os.environ.get('FLASK_ENV', 'default')
-    
-    import os
 
     app = Flask(
         __name__,
