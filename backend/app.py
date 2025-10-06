@@ -2,7 +2,7 @@ import os
 from flask import Flask, send_from_directory, jsonify
 from flask_cors import CORS
 from backend.config import config
-from database import init_db
+from backend.database import init_db
 
 def create_app(config_name=None):
     """Factory function para criar o aplicativo Flask."""
