@@ -1,5 +1,6 @@
 from datetime import datetime
-from database import db
+from backend.database import db
+
 
 class Transaction(db.Model):
     """Modelo para registrar transações e logs do sistema."""
@@ -110,8 +111,8 @@ class Transaction(db.Model):
     def get_product_sales_stats(cls, year, month):
         """Obtém estatísticas de vendas por produto no mês."""
         from sqlalchemy import func, extract
-        from models.order import OrderItem
-        from models.product import Product
+        from backend.models.order import OrderItem
+        from backend.models.product import Product
         
         # Juntar transações aprovadas com itens de pedido
         product_stats = db.session.query(
