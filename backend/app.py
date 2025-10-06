@@ -5,6 +5,7 @@ from backend.config import config
 from backend.database import init_db
 
 
+
 def create_app(config_name=None):
     """Factory function para criar o aplicativo Flask."""
     
@@ -21,7 +22,7 @@ def create_app(config_name=None):
     init_db(app)
     
     # Registrar blueprints
-    from routes.product import product_bp
+    from backend.routes.product import product_bp
     from routes.order import order_bp
     from routes.mercadopago import mercadopago_bp
     from routes.admin import admin_bp
