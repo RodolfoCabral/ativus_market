@@ -1,9 +1,9 @@
 from flask import Blueprint, request, jsonify, current_app
 from functools import wraps
 from backend.database import db
-from models.product import Product
-from models.order import Order
-from models.transaction import Transaction
+from backend.models.product import Product
+from backend.models.order import Order
+from backend.models.transaction import Transaction
 from datetime import datetime, timedelta
 import jwt
 

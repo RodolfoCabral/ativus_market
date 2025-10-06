@@ -1,9 +1,9 @@
 from flask import Blueprint, request, jsonify, current_app
 from backend.database import db
-from models.order import Order
-from models.transaction import Transaction
-from utils.mercadopago_utils import MercadoPagoService
-from utils.esp_utils import ESP8266Service
+from backend.models.order import Order
+from backend.models.transaction import Transaction
+from backend.utils.mercadopago_utils import MercadoPagoService
+from backend.utils.esp_utils import ESP8266Service
 
 mercadopago_bp = Blueprint('mercadopago', __name__)
 
