@@ -14,6 +14,8 @@ import AdminProductsPage from './pages/AdminProductsPage';
 import AdminOrdersPage from './pages/AdminOrdersPage';
 import AdminReportsPage from './pages/AdminReportsPage';
 import { CartProvider } from './contexts/CartContext';
+import './App.css'
+
 
 function App() {
   return (

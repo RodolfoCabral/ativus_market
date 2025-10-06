@@ -46,16 +46,22 @@ def create_app(config_name=None):
     @app.route('/', defaults={'path': ''})
     @app.route('/<path:path>')
     def serve_frontend(path):
-        """Serve os arquivos compilados do frontend (Vite build)."""
+        """Serve o build do Vite (dist) com suporte a arquivos /assets."""
         static_folder = app.static_folder
         file_path = os.path.join(static_folder, path)
 
-        # Se o arquivo existir (como /assets/index-xxx.css ou /assets/index-xxx.js), sirva diretamente
+        # 🔹 1. Se o arquivo solicitado existe, retorna diretamente
         if path and os.path.exists(file_path):
             return send_from_directory(static_folder, path)
 
-        # Caso contrário, devolve o index.html
+        # 🔹 2. Se for um arquivo dentro de /assets (CSS, JS, imagens)
+        assets_path = os.path.join(static_folder, 'assets', path)
+        if path.startswith('assets/') and os.path.exists(assets_path):
+            return send_from_directory(os.path.join(static_folder, 'assets'), path.replace('assets/', ''))
+
+        # 🔹 3. Caso contrário, retorna o index.html (para SPA)
         return send_from_directory(static_folder, 'index.html')
+
 
 
 
