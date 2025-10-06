@@ -24,6 +24,8 @@ pytz==2024.1
 itsdangerous==2.2.0
 Werkzeug==3.0.3
 Jinja2==3.1.4
+psycopg2-binary==2.9.9
+
 
 # --- Compatibilidade Heroku ---
 click==8.1.7
